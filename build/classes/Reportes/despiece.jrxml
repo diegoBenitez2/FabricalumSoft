@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="despiece" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b0c1e450-3246-4baf-a38d-a5f624b3627c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1"/>
+	<parameter name="cot_cot_dpc" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tbcotizacion.`cod_cot` AS tbcotizacion_cod_cot,
+     tbcotizacion.`fec_cot` AS tbcotizacion_fec_cot,
+		tbdespiece_producto.`cod_pro_dp` AS tbdespiece_producto_cod_pro_dp,
+     tbtipoproducto.`des_tip_pto` AS tbtipoproducto_des_tip_pto,
+      tbproducto.`anc_pro` AS tbproducto_anc_pro,
+     tbproducto.`alt_pro` AS tbproducto_alt_pro,
+     tbtipoproducto.`ref_tip_pto` AS tbtipoproducto_ref_tip_pto,
+     tbproducto.`can_pro` AS tbproducto_can_pro,
+
+     tbdespiece_producto.`cod_dpc_dp` AS tbdespiece_producto_cod_dpc_dp,
+      tbdespiece.`des_dpc` AS tbdespiece_des_dpc,
+     tbdespiece_producto.`med_dpc_dp` AS tbdespiece_producto_med_dpc_dp,
+     tbdespiece_producto.`can_dpc_dp` AS tbdespiece_producto_can_dpc_dp
+
+FROM
+     `tbcotizacion` tbcotizacion INNER JOIN `tbcotizacion_producto` tbcotizacion_producto ON tbcotizacion.`cod_cot` = tbcotizacion_producto.`cod_cot_cp`
+     INNER JOIN `tbproducto` tbproducto ON tbcotizacion_producto.`cod_pro_cp` = tbproducto.`cod_pro`
+     INNER JOIN `tbdespiece_producto` tbdespiece_producto ON tbproducto.`cod_pro` = tbdespiece_producto.`cod_pro_dp`
+     INNER JOIN `tbtipoproducto` tbtipoproducto ON tbproducto.`cod_tip_pto_pro` = tbtipoproducto.`cod_tip_pto`
+     INNER JOIN `tbdespiece` tbdespiece ON tbdespiece_producto.`cod_dpc_dp` = tbdespiece.`cod_dpc`
+where tbcotizacion.cod_cot = $P!{cot_cot_dpc} ;]]>
+	</queryString>
+	<field name="tbcotizacion_cod_cot" class="java.lang.Integer"/>
+	<field name="tbcotizacion_fec_cot" class="java.lang.String"/>
+	<field name="tbdespiece_producto_cod_pro_dp" class="java.lang.Integer"/>
+	<field name="tbtipoproducto_des_tip_pto" class="java.lang.String"/>
+	<field name="tbproducto_anc_pro" class="java.lang.Integer"/>
+	<field name="tbproducto_alt_pro" class="java.lang.Integer"/>
+	<field name="tbtipoproducto_ref_tip_pto" class="java.lang.String"/>
+	<field name="tbproducto_can_pro" class="java.lang.Integer"/>
+	<field name="tbdespiece_producto_cod_dpc_dp" class="java.lang.Integer"/>
+	<field name="tbdespiece_des_dpc" class="java.lang.String"/>
+	<field name="tbdespiece_producto_med_dpc_dp" class="java.lang.String"/>
+	<field name="tbdespiece_producto_can_dpc_dp" class="java.lang.String"/>
+	<group name="producto">
+		<groupExpression><![CDATA[$F{tbdespiece_producto_cod_pro_dp}]]></groupExpression>
+		<groupHeader>
+			<band height="71">
+				<staticText>
+					<reportElement x="27" y="0" width="100" height="20" uuid="1e20ebc6-756f-439e-a370-e24a5835301a"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Codigo]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="27" y="20" width="100" height="20" uuid="6442331f-933e-4816-9a0e-18bdedfd6ad1"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{tbdespiece_producto_cod_pro_dp}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="144" y="0" width="100" height="20" uuid="9402e9d3-6227-4d0c-92f9-8c2a02a7f15c"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Descripcion]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="144" y="20" width="100" height="20" uuid="6704fab1-7033-4a51-b7cc-79dc51d37f13"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{tbtipoproducto_des_tip_pto}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="258" y="0" width="61" height="20" uuid="2d202380-9ab3-4285-819d-324ee53c9078"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Ancho]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="258" y="20" width="61" height="20" uuid="e3e8ca64-a9e9-4d34-92a1-86b6d77aeaf9"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{tbproducto_anc_pro}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="334" y="0" width="59" height="20" uuid="be67a434-1233-4306-88b9-29bbc834ed78"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Alto]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="334" y="20" width="59" height="20" uuid="e4278391-9724-4164-a8b8-c1fd08a42b22"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{tbproducto_alt_pro}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="408" y="0" width="68" height="20" uuid="21f72285-c94b-438d-b768-94f11707d13d"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Cantidad]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="408" y="20" width="68" height="20" uuid="5d4fc479-bcc0-4243-a8d9-9c48bba9c000"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{tbproducto_can_pro}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="121" splitType="Stretch">
+			<image>
+				<reportElement x="22" y="0" width="91" height="69" uuid="8d5e8c5c-fcaf-473c-9937-c759a01f1585"/>
+				<imageExpression><![CDATA["C:\\Users\\DiegoB\\Pictures\\Saved Pictures\\lion_robots.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="127" y="11" width="341" height="41" uuid="2484413a-a3b4-4b8d-bc0d-63a234d010a8"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Urben Soluciones inoxidables]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="59" width="100" height="20" uuid="7744728c-9b14-49a8-9f36-9bee755d6fc0"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COTIZACION]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="368" y="79" width="100" height="20" uuid="2ffd0eac-5159-4be4-9928-a4a15bb02d3a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbcotizacion_cod_cot}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="22" y="99" width="77" height="20" uuid="18e4bd16-a4c8-4915-8c8d-2083e665cd93"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="113" y="99" width="177" height="20" uuid="40211b5f-f947-49d8-b1c2-61b23a450050"/>
+				<textFieldExpression><![CDATA[$F{tbcotizacion_fec_cot}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="173" y="18" width="195" height="20" uuid="f20c3eb9-c8fb-4f35-b1b4-10a48603e8cf"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESPIECE DE PRODUCTOS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="59" splitType="Stretch">
+			<staticText>
+				<reportElement x="144" y="0" width="114" height="20" uuid="7ad6a4ac-ff31-431c-a937-6b764723eae7"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nombre despiece]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="0" width="116" height="20" uuid="14d0354b-e2b2-46c3-ac95-e8eb8a85a75b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Medidas]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="144" y="20" width="114" height="20" uuid="7ff7439f-986c-4390-acd4-518f1a4f2329"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbdespiece_des_dpc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="20" width="116" height="20" uuid="23d78f8f-47d8-4322-bb22-7aec235986d7"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbdespiece_producto_med_dpc_dp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="408" y="0" width="68" height="20" uuid="6fbe3731-02bb-48fd-b9af-275605ebb594"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="408" y="20" width="68" height="20" uuid="b60192be-3ff7-4abd-b23c-b54be771f834"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbdespiece_producto_can_dpc_dp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="27" y="0" width="100" height="20" uuid="ad587c40-eedb-4ef1-b132-197d660b767d"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="27" y="20" width="100" height="20" uuid="afda5c1a-b125-4aad-bc65-f4040338cc50"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbdespiece_producto_cod_dpc_dp}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="222" y="0" width="41" height="20" uuid="c8936c0a-7e06-4abd-9236-ba7e987eb6d8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="173" y="0" width="46" height="20" uuid="f13f8f11-1780-4c1f-940e-db7d637ce648"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Pagina:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="263" y="0" width="32" height="20" uuid="422d7525-fa0f-4364-b7e3-397b566c5799"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="294" y="0" width="40" height="20" uuid="50995f49-312f-47f5-b270-bcdac2f514ec"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

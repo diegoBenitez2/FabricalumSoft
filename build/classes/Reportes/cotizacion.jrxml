@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cotizacion" language="groovy" pageWidth="700" pageHeight="890" columnWidth="660" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1189075f-0e99-427d-b0f8-e511ad011beb">
+	<property name="ireport.zoom" value="1.1000000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="87"/>
+	<parameter name="cod_cot" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tbcotizacion.`cod_cot` AS tbcotizacion_cod_cot,
+     tbcotizacion.`fec_cot` AS tbcotizacion_fec_cot,
+     tbtipoproducto.`des_tip_pto` AS tbtipoproducto_des_tip_pto,
+     tbproducto.`can_pro` AS tbproducto_can_pro,
+     tbcotizacion_producto.`cod_cot_cp` AS tbcotizacion_producto_cod_cot_cp,
+     tbcotizacion_producto.`cod_pro_cp` AS tbcotizacion_producto_cod_pro_cp,
+     tbcotizacion_producto.`val_uni_pro` AS tbcotizacion_producto_val_uni_pro,
+     tbcotizacion_producto.`pre_pro_cp` AS tbcotizacion_producto_pre_pro_cp,
+     tbcliente.`id_cli` AS tbcliente_id_cli,
+     tbcliente.`nom_cli` AS tbcliente_nom_cli,
+     tbcliente.`ape_cli` AS tbcliente_ape_cli,
+     tbcliente.`dir_cli` AS tbcliente_dir_cli,
+     tbcliente.`ema_cli` AS tbcliente_ema_cli,
+     tbtelefono_cliente.`num_fijo` AS tbtelefono_cliente_num_fijo,
+     tbtelefono_cliente.`num_mov` AS tbtelefono_cliente_num_mov,
+     tbcotizacion.`iva_cot` AS tbcotizacion_iva_cot,
+     tbcotizacion.`sub_tot_cot` AS tbcotizacion_sub_tot_cot,
+     tbcotizacion.`tot_cot` AS tbcotizacion_tot_cot,
+     tbproducto.`cod_pro` AS tbproducto_cod_pro,
+     tbcotizacion.`id_cli_cot` AS tbcotizacion_id_cli_cot
+FROM
+     `tbcotizacion` tbcotizacion INNER JOIN `tbcotizacion_producto` tbcotizacion_producto ON tbcotizacion.`cod_cot` = tbcotizacion_producto.`cod_cot_cp`
+     INNER JOIN `tbproducto` tbproducto ON tbcotizacion_producto.`cod_pro_cp` = tbproducto.`cod_pro`
+     INNER JOIN `tbtipoproducto` tbtipoproducto ON tbproducto.`cod_tip_pto_pro` = tbtipoproducto.`cod_tip_pto`
+     INNER JOIN `tbcliente` tbcliente ON tbcotizacion.`id_cli_cot` = tbcliente.`id_cli`
+     INNER JOIN `tbtelefono_cliente` tbtelefono_cliente ON tbcliente.`id_cli` = tbtelefono_cliente.`id_cli_tel`
+WHERE
+     tbcotizacion.cod_cot = $P{cod_cot}]]>
+	</queryString>
+	<field name="tbcotizacion_cod_cot" class="java.lang.Integer"/>
+	<field name="tbcotizacion_fec_cot" class="java.lang.String"/>
+	<field name="tbtipoproducto_des_tip_pto" class="java.lang.String"/>
+	<field name="tbproducto_can_pro" class="java.lang.Integer"/>
+	<field name="tbcotizacion_producto_cod_cot_cp" class="java.lang.Integer"/>
+	<field name="tbcotizacion_producto_cod_pro_cp" class="java.lang.Integer"/>
+	<field name="tbcotizacion_producto_val_uni_pro" class="java.lang.Double"/>
+	<field name="tbcotizacion_producto_pre_pro_cp" class="java.lang.Double"/>
+	<field name="tbcliente_id_cli" class="java.lang.Integer"/>
+	<field name="tbcliente_nom_cli" class="java.lang.String"/>
+	<field name="tbcliente_ape_cli" class="java.lang.String"/>
+	<field name="tbcliente_dir_cli" class="java.lang.String"/>
+	<field name="tbcliente_ema_cli" class="java.lang.String"/>
+	<field name="tbtelefono_cliente_num_fijo" class="java.lang.String"/>
+	<field name="tbtelefono_cliente_num_mov" class="java.lang.String"/>
+	<field name="tbcotizacion_iva_cot" class="java.lang.Double"/>
+	<field name="tbcotizacion_sub_tot_cot" class="java.lang.Double"/>
+	<field name="tbcotizacion_tot_cot" class="java.lang.Double"/>
+	<field name="tbproducto_cod_pro" class="java.lang.Integer"/>
+	<field name="tbcotizacion_id_cli_cot" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="130" height="90" uuid="75c97b02-1bad-4201-a886-3978e721958b"/>
+				<imageExpression><![CDATA["C:\\Users\\DiegoB\\Pictures\\Saved Pictures\\lion_robots.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="516" y="70" width="128" height="20" backcolor="#0099FF" uuid="8eea04b6-2db6-483b-b7a7-85d9e9dffd3b"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COTIZACION NRo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="17" width="329" height="34" uuid="e7a63c28-203e-45a0-a5d8-4f7f7a41286e"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Urben Soluciones inoxidables]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="516" y="90" width="128" height="20" uuid="7e08fa37-59fd-469a-80be-d43ee8a031e6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbcotizacion_cod_cot}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="106" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="21" width="100" height="20" uuid="cb2d9639-9e85-4249-bc91-f92975e41217"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbcliente_id_cli}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="22" width="129" height="20" uuid="3e1247a3-1ac7-4750-ae78-901f43570491"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbcliente_nom_cli}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="1" width="100" height="20" backcolor="#0099FF" uuid="eec7f9df-44a7-400c-91f6-1f3ef8f06dc4"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="1" width="129" height="20" backcolor="#0099FF" uuid="0baf4b0b-b519-404d-ba8d-4944a83810fe"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="256" y="21" width="131" height="20" uuid="63203fab-b7a5-40e3-9ba0-7e38d0c182c0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbcliente_ape_cli}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="256" y="1" width="131" height="20" backcolor="#0099FF" uuid="c36e5ca4-4e5d-41b8-9c7b-bc8a9501146e"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="22" width="100" height="20" uuid="4e65b4d5-95ea-44fa-9dfe-13a4694beb22"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbcotizacion_fec_cot}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="410" y="2" width="100" height="20" backcolor="#0099FF" uuid="e3c0fc8b-e32a-448c-88e7-44e0a162bff6"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="533" y="22" width="111" height="20" uuid="0ae7d5c5-0cb0-41b3-8db9-6ba8562e1391"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbtelefono_cliente_num_mov}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="533" y="2" width="111" height="20" backcolor="#0099FF" uuid="50972bd1-cfed-4597-9945-2efc710f437d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono movil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="52" width="100" height="20" backcolor="#0099FF" uuid="06199bcc-57f0-4399-a819-1b48f67d8b14"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono fijo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="72" width="100" height="20" uuid="f20860a1-d6e2-4dad-bb61-d0f70efe5471"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbtelefono_cliente_num_fijo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="114" y="52" width="220" height="20" backcolor="#0099FF" uuid="702a6304-d6fc-486c-8f72-d6192f3cbb7e"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Direccion]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="114" y="72" width="220" height="20" uuid="237ecd43-5483-4962-82b8-198cda296da3"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbcliente_dir_cli}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="350" y="52" width="160" height="20" backcolor="#0099FF" uuid="67b39225-2cd4-4782-9502-4ae6407644be"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="350" y="72" width="160" height="20" uuid="4130c69d-e482-41f6-8584-5c8d64bd3204"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbcliente_ema_cli}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" backcolor="#0099FF" uuid="71b7fe1a-8f3c-4808-a244-47edd88f36cc"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="0" width="192" height="20" backcolor="#0099FF" uuid="d0342411-71ab-46f3-a562-ddb93183a48f"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="0" width="68" height="20" backcolor="#0099FF" uuid="e5b2cee5-463e-4f30-85dc-c8ca9408359b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="0" width="100" height="20" backcolor="#0099FF" uuid="d2c6c3d5-b072-4667-be3e-751205b5dc74"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Unitario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="510" y="0" width="100" height="20" backcolor="#0099FF" uuid="c04ec937-32d4-4971-b0e4-e539b6a49bae"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="43a2ce29-ee48-4342-992a-7e32b0fbf82a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbproducto_cod_pro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="0" width="192" height="20" uuid="8281be1a-b74b-496c-9138-3c83ff45b462"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbtipoproducto_des_tip_pto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="0" width="68" height="20" uuid="dd32077c-bf39-4bcc-9477-b4be7a304ebd"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbproducto_can_pro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="398" y="0" width="100" height="20" uuid="448ccb33-749e-495a-bd3c-b235675a4a53"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbcotizacion_producto_val_uni_pro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="0" width="100" height="20" uuid="0b2e8ccd-09d6-463f-9091-115da9bbb135"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbcotizacion_producto_pre_pro_cp}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="398" y="40" width="100" height="20" backcolor="#0099FF" uuid="7718edab-664a-4402-9dce-4860a049a72a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="510" y="40" width="100" height="20" uuid="b5e41f16-a5af-45aa-82e7-b8ee7dac9dcf"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbcotizacion_tot_cot}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="398" y="20" width="100" height="20" backcolor="#0099FF" uuid="1ad1df4f-da92-49c5-8fd9-466f074e8dc4"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Iva:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="510" y="20" width="100" height="20" uuid="d34b69fc-e890-4802-a0ee-6de49bb6d041"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbcotizacion_iva_cot}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="398" y="0" width="100" height="20" backcolor="#0099FF" uuid="9efa8db9-6232-408e-864d-8f10dbd7a6ca"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subtotal:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="510" y="0" width="100" height="20" uuid="afb2cb3e-8829-4ec7-9c52-ec30bab659a8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tbcotizacion_sub_tot_cot}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="26">
+			<staticText>
+				<reportElement x="268" y="0" width="35" height="20" uuid="32985ea4-2724-4c85-804b-020fc1ab17a5"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pagina]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="303" y="0" width="16" height="20" uuid="8f9760b5-c193-4012-ac13-2068fb1843f9"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="319" y="0" width="37" height="20" uuid="737af141-8edb-4d49-830f-3c457b8cf60b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="356" y="0" width="31" height="20" uuid="5a922676-cd85-4088-b87f-5c4c5d173c81"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
